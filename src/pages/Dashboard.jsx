@@ -7,7 +7,6 @@ export default function Dashboard() {
   const [score, setScore] = useState(null);
   const [analysis, setAnalysis] = useState("");
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const token = params.get("access_token");
@@ -28,7 +27,7 @@ export default function Dashboard() {
     const songList = tracks.map((t) => `${t.name} by ${t.artists[0].name}`);
 
     try {
-      const response = await fetch("http://localhost:5000/analyze", {
+      const response = await fetch("http://localhost:5000/ai/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ songs: songList }),
